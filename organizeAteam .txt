@@ -1,0 +1,40 @@
+package 线上笔试题.安全360.组队吃鸡;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        List<Integer> list = new ArrayList<>();
+        while(N !=0 ){
+            int[] arr = new int[4];
+            for(int i=0; i<arr.length; i++)
+                arr[i] = sc.nextInt();
+            int sum = 0;
+            sum += arr[3];
+            if(arr[2] >= arr[0]) {
+                sum += arr[0];
+                sum += arr[1]/2;
+            } else {
+                sum += arr[2];
+                arr[0] -= arr[2];
+                while(arr[0] >= 2 && arr[1] > 0){
+                    sum++;
+                    arr[1]--;
+                    arr[0] -= 2;
+                }
+                if(arr[0]>=4)
+                    sum += arr[0]/4;
+                if(arr[1]>=2)
+                    sum += arr[1]/2;
+            }
+            list.add(sum);
+            N--;
+        }
+        for(Integer i : list)
+            System.out.println(i);
+    }
+}
